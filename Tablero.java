@@ -111,6 +111,7 @@ private String Tabla[][];
 			y = generaNumero(7,0);
 			if(Tabla[x][y] == "1"){
 				Tabla[x][y] = j1.getLetra();
+				j1.setPuntuacion(1);
 				res = true;
 				
 			}
@@ -135,7 +136,6 @@ private String Tabla[][];
 		if(direccion.equals("ARRIBA")) {
 		int res = ComprobarMovArriba(j1,j2,y);
 		quitarCasilla(j1);
-		Tabla[res][xj1] = j1.getLetra();
 		if(Tabla[res][xj1] == "1") {
 			j1.setPuntuacion(1+j1.getPuntuacion());
 		}
@@ -146,13 +146,14 @@ private String Tabla[][];
 		if(Tabla[res][xj1] == "3") {
 			j1.setPuntuacion(3+j1.getPuntuacion());
 		}
+		Tabla[res][xj1] = j1.getLetra();
 		}
 		
 		
 		if(direccion.equals("ABAJO")) {
 		int res = ComprobarMovAbajo(j1,j2,y);
 		quitarCasilla(j1);
-		Tabla[res][xj1] = j1.getLetra();
+		
 		if(Tabla[res][xj1] == "1") {
 			j1.setPuntuacion(1+j1.getPuntuacion());
 		}
@@ -163,12 +164,13 @@ private String Tabla[][];
 		if(Tabla[res][xj1] == "3") {
 			j1.setPuntuacion(3+j1.getPuntuacion());
 		}
+		Tabla[res][xj1] = j1.getLetra();
 		}
 		
 		if(direccion.equals("DERECHA")) {
-		int res = ComprobarMovAbajo(j1,j2,y);
+		int res = ComprobarMovDerecha(j1,j2,y);
 		quitarCasilla(j1);
-		Tabla[yj1][res] = j1.getLetra();
+		
 		if(Tabla[yj1][res] == "1") {
 			j1.setPuntuacion(1+j1.getPuntuacion());
 		}
@@ -179,12 +181,12 @@ private String Tabla[][];
 		if(Tabla[yj1][res] == "3") {
 			j1.setPuntuacion(3+j1.getPuntuacion());
 		}
+		Tabla[yj1][res] = j1.getLetra();
 		}
 		
 		if(direccion.equals("IZQUIERDA")) {
-		int res = ComprobarMovAbajo(j1,j2,y);
+		int res = ComprobarMovIzquierda(j1,j2,y);
 		quitarCasilla(j1);
-		Tabla[yj1][res] = j1.getLetra();
 		if(Tabla[yj1][res] == "1") {
 			j1.setPuntuacion(1+j1.getPuntuacion());
 		}
@@ -195,6 +197,7 @@ private String Tabla[][];
 		if(Tabla[yj1][res] == "3") {
 			j1.setPuntuacion(3+j1.getPuntuacion());
 		}
+		Tabla[yj1][res] = j1.getLetra();
 		}
 		
 		
@@ -252,6 +255,14 @@ private String Tabla[][];
 		int y1 = y;
 		int xposj1 = getPosJ[1];
 		int xposj2 = getPosOtro[1];
+		boolean res = true;
+		
+		for(int i = posj1-1; i >= 0 && res == true; i--) {
+			if(Tabla[i][xposj1] ==  "0") {
+			y1 = i+1;
+			res = false;
+		}
+		}
 		
 		if(xposj1 == xposj2) {
 			if(posj1 < posj2) {
@@ -263,7 +274,8 @@ private String Tabla[][];
 			}
 		}
 		
-		else if(posj1 > posj2) {
+		else
+			if(posj1 > posj2) {
 			if(y1 <= posj2) {
 				y1 = posj2+1;
 			}
@@ -271,7 +283,12 @@ private String Tabla[][];
 		}
 		}
 		else {
-			y1 = y1;
+			if(y1 >= 0) {
+				y1 = y1;
+			}
+			else {
+				y1 = 0;
+			}
 		}
 
 		return y1;
@@ -285,6 +302,13 @@ private String Tabla[][];
 		int y1 = y;
 		int xposj1 = getPosJ[1];
 		int xposj2 = getPosOtro[1];
+		boolean res = true;
+
+		for(int i = posj1+1; i < 8 && res == true; i++) {
+			if(Tabla[i][xposj1] ==  "0")
+			y1 = i-1;
+			res = false;
+		}
 		
 		if(xposj1 == xposj2) {
 			if(posj1 > posj2) {
@@ -300,11 +324,15 @@ private String Tabla[][];
 			if(y1 >= posj2) {
 				y1 = posj2-1;
 			}
-		
-		}
+			}
 		}
 		else {
-			y1 = y1;
+			if(y1 < 8) {
+				y1 = y1;
+			}
+			else {
+				y1 = 7;
+			}
 		}
 
 		return y1;
@@ -317,6 +345,14 @@ private String Tabla[][];
 		int y1 = y;
 		int xposj1 = getPosJ[1];
 		int xposj2 = getPosOtro[1];
+		boolean res = true;
+
+		for(int i = xposj1+1; i <= 7 && res == true; i++) {
+			if(Tabla[posj1][i] ==  "0") {
+			y1 = i-1;
+			res = false;
+			}
+		}
 		
 		if(xposj1 == xposj2) {
 			if(posj1 > posj2) {
@@ -336,7 +372,14 @@ private String Tabla[][];
 		}
 		}
 		else {
-			y1 = y1;
+			if(y1 < 8) {
+				y1 = y1;
+			}
+			else {
+				y1 = 7;
+			}
+
+			
 		}
 
 		return y1;
@@ -350,6 +393,14 @@ private String Tabla[][];
 		int y1 = y;
 		int xposj1 = getPosJ[1];
 		int xposj2 = getPosOtro[1];
+		boolean res = true;
+		
+		for(int i = xposj1-1; i >= 0 && res == true; i--) {
+			if(Tabla[posj1][i] ==  "0") {
+			y1 = i+1;
+			res = false;
+			}
+		}
 		
 		if(xposj1 == xposj2) {
 			if(posj1 < posj2) {
@@ -369,7 +420,12 @@ private String Tabla[][];
 		}
 		}
 		else {
-			y1 = y1;
+			if(y1 >= 0) {
+				y1 = y1;
+			}
+			else {
+				y1 = 0;
+			}
 		}
 
 		return y1;

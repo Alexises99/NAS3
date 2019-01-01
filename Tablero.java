@@ -305,9 +305,10 @@ private String Tabla[][];
 		boolean res = true;
 
 		for(int i = posj1+1; i < 8 && res == true; i++) {
-			if(Tabla[i][xposj1] ==  "0")
+			if(Tabla[i][xposj1] ==  "0") {
 			y1 = i-1;
 			res = false;
+			}
 		}
 		
 		if(xposj1 == xposj2) {

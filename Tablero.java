@@ -235,18 +235,6 @@ private String Tabla[][];
 	}
 		
 	
-	public int FinPartida() {
-		int contador = 0;
-		for(int i = 0; i < 8; i++) {
-			for(int j = 0; j < 8; j++) {
-				if(Tabla[i][j] == "0") {
-					contador++;
-				}
-			}
-		}
-		return contador;
-	}
-	
 	public int ComprobarMovArriba(Jugadores j1,Jugadores j2,int y) {
 		int getPosJ[] = getPosJugador(j1);
 		int getPosOtro[] = getPosJugador(j2);
@@ -431,6 +419,30 @@ private String Tabla[][];
 
 		return y1;
 }
+	
+	 public boolean ComprobarFinalArriba(Jugadores j1){
+	     boolean AcabarPartida = false;
+	     int getPosj[] = getPosJugador(j1);
+	     int posj1 = getPosj[0];
+	     int xposj1 = getPosj[1];
+	     
+	    return AcabarPartida;
+	}
+	 
+	public boolean finalJ(Jugadores j1,Jugadores j2,int y,String d) {
+		int getPosJ[] = getPosJugador(j1);
+		int posj1 = getPosJ[0];
+		int xposj1 = getPosJ[1];
+		setPosJugador(j1,j2,y,d);
+		int getPos2J[] = getPosJugador(j1);
+		int pos2j1 = getPosJ[0];
+		int xpos2j1 = getPosJ[1];
+		boolean res = false;
+		if(posj1 == pos2j1 && xposj1 == xpos2j1) {
+			res = true;
+		}
+		return res;
+	}
 }
 
 	

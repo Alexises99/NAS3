@@ -20,7 +20,7 @@ public class Pruebecitasyawey {
 		t1.setInicioJugador(j2);
 		
 		t1.mostrarTablero();
-		
+		boolean res = false;
 		do {
 			System.out.println("");
 			System.out.println("");
@@ -29,25 +29,26 @@ public class Pruebecitasyawey {
 			if(s.equals("ARRIBA")) {
 				System.out.print("Introduce el valor de y: ");
 				int y = S.nextInt();
-				t1.setPosJugador(j1,j2,y,s);
+				res = t1.finalJ(j1,j2,y,s);
 				t1.mostrarTablero();
+				
 			}
 			else if(s.equals("ABAJO")) {
 				System.out.print("Introduce el valor de y: ");
 				int y = S.nextInt();
-				t1.setPosJugador(j1,j2,y,s);
+				 res =t1.finalJ(j1,j2,y,s);
 				t1.mostrarTablero();
 			}
 			else if(s.equals("DERECHA")) {
 				System.out.print("Introduce el valor de x: ");
 				int y = S.nextInt();
-				t1.setPosJugador(j1,j2,y,s);
+				res = t1.finalJ(j1,j2,y,s);
 				t1.mostrarTablero();
 			}
 			else if(s.equals("IZQUIERDA")) {
 				System.out.print("Introduce el valor de x: ");
 				int y = S.nextInt();
-				t1.setPosJugador(j1,j2,y,s);
+				res = t1.finalJ(j1,j2,y,s);
 				t1.mostrarTablero();
 			}
 			System.out.println("");
@@ -77,6 +78,6 @@ public class Pruebecitasyawey {
 				t1.setPosJugador(j2,j1,y,s1);
 				t1.mostrarTablero();
 			}
-		}while(t1.FinPartida() <= 64);
+		}while(!res);
 	}
 }
